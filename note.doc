@@ -1,0 +1,10 @@
+<h1> Playwright intro </h1>
+ - reliable end to end testing: auto wait capability ensure reliable and stable end to end testing for modern web application, even in the face of dynamic  and complex user interactions
+ - Cross-Browser Compatibity
+ - Multiplatform suppor 
+ - Multilingual flexibility: provide language binding for javascript, typescript, java, python and c#
+ Playwright advanced feature:
+ - Tracing and debugging = Screenshot, video recording and comprehensive logging  enabled when running the automation
+ - Network Interception - APO testing libraries to intercept and validate network calls within your web application, enable you to test edge case scenarios and ensure the resilience of your applications interactions. 
+ - Broser context management - it has context feature, which allows you to save and transfer browser state across your test suite, improving test efficiency and reducing the overhead of setting up the same browser state for each test case.
+ - Codegen toolL= it can generate test code by recording your actions, saving your time and effort in creating initial test cases and prociding a starting point for further customization.
