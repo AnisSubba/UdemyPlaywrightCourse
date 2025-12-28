@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Learning playwright (typescript and JavaScript) for automation testing",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "report": "npx playwright show-report --host 127.0.0.1 --port 9323"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AnisSubba/UdemyPlaywrightCourse.git"

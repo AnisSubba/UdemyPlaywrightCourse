@@ -8,3 +8,5 @@
  - Network Interception - APO testing libraries to intercept and validate network calls within your web application, enable you to test edge case scenarios and ensure the resilience of your applications interactions. 
  - Broser context management - it has context feature, which allows you to save and transfer browser state across your test suite, improving test efficiency and reducing the overhead of setting up the same browser state for each test case.
  - Codegen toolL= it can generate test code by recording your actions, saving your time and effort in creating initial test cases and prociding a starting point for further customization.
+
+ Because report were coming via IPv6 and window chrome and opera didn't support i added a external script on package.json for report to run it via local host IPv4 so to see the report i have to type npm run report on terminal or bash
