@@ -1,0 +1,23 @@
+{
+  "name": "udemyplaywrightcourse",
+  "version": "1.0.0",
+  "description": "Learning playwright (typescript and JavaScript) for automation testing",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnisSubba/UdemyPlaywrightCourse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnisSubba/UdemyPlaywrightCourse/issues"
+  },
+  "homepage": "https://github.com/AnisSubba/UdemyPlaywrightCourse#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3"
+  }
+}
