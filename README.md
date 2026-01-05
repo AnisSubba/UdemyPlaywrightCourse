@@ -6,8 +6,6 @@ This repository contains my **learning and hands-on implementation of Playwright
 
 The project demonstrates how to build **robust, scalable, and modern end-to-end test automation solutions** using **Playwright with JavaScript**, following industry best practices.
 
-> **Course content last updated:** December 17, 2025  
-> Includes demos of **Playwright Agents & MCPs**
 
 ---
 
@@ -119,21 +117,3 @@ By completing and maintaining this repository, the goal is to:
 - Design scalable Playwright frameworks
 - Combine UI + API testing effectively
 - Prepare for real-world automation roles
-
----
-
-## ⚠️ Disclaimer
-
-This repository is created **for learning and educational purposes** as part of a Udemy course.  
-The application under test and course structure belong to their respective owners.
-
----
-
-## 📬 Feedback & Improvements
-
-Suggestions, improvements, and discussions are always welcome.  
-This repository will continue to evolve as my Playwright learning progresses.
-
----
-
-**Become a Playwright hero and embrace the future of end-to-end test automation.**
