@@ -14,12 +14,11 @@ export default defineConfig({
   testDir: './tests', //can speicify if you want to run specific tests
   timeout: 40 * 1000, // for all the tests
   expect: { //for assertion testing
-    timeout: 40 * 1000
+    timeout: 5000
   },
   reporter: 'html',
   use: {
-    browserName: 'firefox',
+    browserName: 'chromium',
     headless: false
-    
 }
 });

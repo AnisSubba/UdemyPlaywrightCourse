@@ -10,3 +10,9 @@
  - Codegen toolL= it can generate test code by recording your actions, saving your time and effort in creating initial test cases and prociding a starting point for further customization.
 
  Because report were coming via IPv6 and window chrome and opera didn't support i added a external script on package.json for report to run it via local host IPv4 so to see the report i have to type npm run report on terminal or bash
+
+ If id is present = css -> tagnme# or #
+ if class attribute is present = css -> tagname. or .
+ Write css based on any Attribute = css -> [attribute='Value']
+ Write css with traversing for parent to child = css -> parenttagname >> childtagname
+ If needs to write the locator based on text = text=''
