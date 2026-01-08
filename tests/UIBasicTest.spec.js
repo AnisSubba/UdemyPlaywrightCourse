@@ -18,12 +18,16 @@ test('Browser Context Playwright test', async ({browser}) =>
 });
 
 
+/* The code block `test('Page Playwright test', async ({page}) => { ... }` is defining a test case
+using Playwright's testing framework. In this test case, the test function is expecting a `page`
+object as a parameter, which represents a browser page where the test actions will be performed. */
 test('Page Playwright test', async ({page}) =>
 {
     const userName = page.locator("[name='email']");
     const password = page.locator("[type='password']");
     const loginButton = page.locator("[value='Login']");
     const errorMessage = page.locator(".alert.alert-danger");
+    const contentTitle = page.locator(".content h4");
 
 
     await page.goto('https://demotest.website/user/login');
@@ -44,5 +48,11 @@ test('Page Playwright test', async ({page}) =>
     await loginButton.click();
 
     console.log(await page.locator(".hero-content a").textContent());
+    console.log(await contentTitle.nth(1).textContent());
+    console.log(await contentTitle.first().textContent());
+    /* alltextContents provides array so if no textContent which has attached validation, 
+    so if only added allTextContents by itself it will return the array with 0 element */
+    const allTitles = await contentTitle.allTextContents();
+    console.log(allTitles);
 
 });
