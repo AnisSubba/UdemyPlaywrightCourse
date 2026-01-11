@@ -16,3 +16,6 @@
  Write css based on any Attribute = css -> [attribute='Value']
  Write css with traversing for parent to child = css -> parenttagname >> childtagname
  If needs to write the locator based on text = text=''
+
+ playwright report - npm run report
+ playwright run test - npm playwright test --ui

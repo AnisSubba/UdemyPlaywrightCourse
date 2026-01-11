@@ -11,6 +11,7 @@ test('Browser Context Playwright test', async ({browser}) =>
 {
     const context = await browser.newContext();
     const page = await context.newPage();
+
     await page.goto('https://youtube.com');
     console.log(await page.title());
     await expect(page).toHaveTitle("YouTube");
@@ -23,6 +24,7 @@ using Playwright's testing framework. In this test case, the test function is ex
 object as a parameter, which represents a browser page where the test actions will be performed. */
 test('Page Playwright test', async ({page}) =>
 {
+    // page not working 
     const userName = page.locator("[name='email']");
     const password = page.locator("[type='password']");
     const loginButton = page.locator("[value='Login']");
