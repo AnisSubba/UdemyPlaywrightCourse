@@ -58,3 +58,36 @@ test('Page Playwright test', async ({page}) =>
     console.log(allTitles);
 
 });
+
+test.only('rahulshettyacademy automation: UI Control', async ({page}) =>
+{
+    const userName = page.locator("#username");
+    const password = page.locator("#password");
+    const signInButton = page.locator("#signInBtn");
+    const dropdwonOptions = page.locator("select.form-control");
+
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    console.log(await page.title());
+    await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");    
+
+    await userName.fill("rahulshettyacademy");
+    await password.fill("learning");
+    // select by value
+    await dropdwonOptions.selectOption("consult"); 
+    
+    await page.locator(".radiotextsty").nth(1).click();
+    await page.locator("#okayBtn").click();
+
+    /* The code `console.log(await page.locator(".radiotextsty").last().isChecked());` is checking
+    whether the last radio button element with the class "radiotextsty" on the page is currently
+    checked or not. */
+    console.log(await page.locator(".radiotextsty").last().isChecked());
+/* The code `await expect(await page.locator(".radiotextsty").last().toBeChecked());` is performing an
+assertion using Playwright's testing framework. */
+    await expect(await page.locator(".radiotextsty").last().toBeChecked());
+
+    await signInButton.click();
+    
+    // will open playwright inspector which allows you to see the steps 
+    // await page.pause();
+});

@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('Rahulshettyacademy playwright test', async ({page}) =>
+test.only('Rahulshettyacademy playwright test', async ({page}) =>
 {
     await page.goto('https://rahulshettyacademy.com/client');
     console.log(await page.title());
@@ -10,13 +10,17 @@ test('Rahulshettyacademy playwright test', async ({page}) =>
     await page.locator("#userPassword").fill("Tester12321!");
     await page.locator("#login").click();
 
-    console.log(await page.locator(".card-body h5 b").first().textContent());
+    // wait until network are idle state with no work left and page is loaded
+    await page.waitForLoadState('networkidle'); 
+    // noticed notworidle is abit flaxy in some cases, so can use this methord to wait for specific element to appear
+    // await page.locator(".card-body b").first().waitFor();
+
     const allTitles = await page.locator(".card-body h5 b").allTextContents();
     console.log(allTitles);
 
 });
 
-test.only('Demo Website test', async ({page}) =>
+test('Demo Website test', async ({page}) =>
 {
     const userName = page.locator("#email");
     const password = page.locator("#password");
