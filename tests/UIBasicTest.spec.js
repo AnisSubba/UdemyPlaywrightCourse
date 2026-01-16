@@ -49,9 +49,9 @@ test('Page Playwright test', async ({page}) =>
     await password.fill("test123");
     await loginButton.click();
 
-    console.log(await page.locator(".hero-content a").textContent());
-    console.log(await contentTitle.nth(1).textContent());
-    console.log(await contentTitle.first().textContent());
+    console.log(await page.locator(".hero-content a").inputValue());
+    console.log(await contentTitle.nth(1).inputValue());
+    console.log(await contentTitle.first().inputValue());
     /* alltextContents provides array so if no textContent which has attached validation, 
     so if only added allTextContents by itself it will return the array with 0 element */
     const allTitles = await contentTitle.allTextContents();
@@ -59,12 +59,13 @@ test('Page Playwright test', async ({page}) =>
 
 });
 
-test.only('rahulshettyacademy automation: UI Control', async ({page}) =>
+test('rahulshettyacademy automation: UI Control', async ({page}) =>
 {
     const userName = page.locator("#username");
     const password = page.locator("#password");
     const signInButton = page.locator("#signInBtn");
     const dropdwonOptions = page.locator("select.form-control");
+    const documentLink = page.locator("a[href*='documents-request']");
 
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
     console.log(await page.title());
@@ -82,12 +83,54 @@ test.only('rahulshettyacademy automation: UI Control', async ({page}) =>
     whether the last radio button element with the class "radiotextsty" on the page is currently
     checked or not. */
     console.log(await page.locator(".radiotextsty").last().isChecked());
-/* The code `await expect(await page.locator(".radiotextsty").last().toBeChecked());` is performing an
-assertion using Playwright's testing framework. */
-    await expect(await page.locator(".radiotextsty").last().toBeChecked());
+    /* The code `await expect(await page.locator(".radiotextsty").last().toBeChecked());` is performing an
+    assertion using Playwright's testing framework. */
+    await expect(await page.locator(".radiotextsty").last()).toBeChecked();
 
-    await signInButton.click();
+    // Term and condition checkbox is clicked and assertion to validate that it is checked
+    await page.locator("#terms").click();
+    await expect(page.locator("#terms")).toBeChecked();
+
+    // Term and condition checkbox is unchecked and assertion to validate that it is unchecked
+    await page.locator("#terms").uncheck(); 
+    await expect(page.locator("#terms")).not.toBeChecked();
+    expect(await page.locator("#terms").isChecked()).toBeFalsy();
+
+    // validate the document link has attribute blinkingText 
+    await expect(documentLink).toHaveAttribute("class", "blinkingText");
+
+    // await signInButton.click();
     
     // will open playwright inspector which allows you to see the steps 
     // await page.pause();
+});
+
+/* Autoamtion testing on Rahual Sheety Academy 
+    - Pacing into the main login page 
+    - Clicking the banner which opens a new window
+    - Validating the new window is opened and can be interacted with
+    - Getting the email domain name from the text and filling in the username field for parent page
+     */
+
+test.only('rahulshettyacademy automation: child windows', async ({browser}) =>
+{
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    
+    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+    const documentLink = page.locator("a[href*='documents-request']");
+    
+    const [newPage] = await Promise.all(
+        [
+            context.waitForEvent('page'), //listening for new page event pending, rejected, fulfilled
+            documentLink.click(),
+        ]) //new page is opening 
+           const text = await newPage.locator(".red").textContent();
+           const arraytext = text.split("@");
+           const domain = arraytext[1].split(" ")[0];
+           console.log(domain);//getting the email domain name from the text
+           console.log(text);
+
+        await page.locator("#username").fill(domain); //getting the email domain name from the text and filling in the username field for parent page
+        console.log( await page.locator("#username").inputValue());// inputvalue is required to get the value filled in the field by script automation while textContent will not work
 });

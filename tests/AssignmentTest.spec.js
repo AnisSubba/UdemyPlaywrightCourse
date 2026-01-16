@@ -56,7 +56,7 @@ test('Demo Website test', async ({page}) =>
     await password.fill("Tester12321!");
     await loginButton.click();
 
-    console.log(await navTitle.nth(1).textContent());
+    console.log(await navTitle.nth(1).inputValue());
     console.log(await navTitle.allTextContents());  
 
     await homeButton.click();
