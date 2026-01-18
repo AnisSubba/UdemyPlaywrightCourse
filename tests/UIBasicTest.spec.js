@@ -106,7 +106,7 @@ test('rahulshettyacademy automation: UI Control', async ({page}) =>
 });
 
 /* Autoamtion testing on Rahual Sheety Academy 
-    - Pacing into the main login page 
+    - Opening Parent Login page 
     - Clicking the banner which opens a new window
     - Validating the new window is opened and can be interacted with
     - Getting the email domain name from the text and filling in the username field for parent page
