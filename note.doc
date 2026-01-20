@@ -19,5 +19,7 @@
 
  playwright report - npm run report
  playwright run test - npm playwright test test/(class Full name) --ui
-
  playwright has search function which isn't just basice css selectore but other function which is very helpful. Such as "text="Add to Cart" or "h3:has-text('Zara Coat 3')"
+
+ Had some issue with running --ui so got this code which opens ui to the local webpage instead a external popup : npx playwright test --ui --ui-host=127.0.0.1 --ui-port=0
+
