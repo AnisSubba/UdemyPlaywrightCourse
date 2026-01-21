@@ -101,8 +101,8 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
     // wait for orders page to load
     await page.locator("tbody").waitFor();
 
-    // Orders Page - Verify order in orders list: can use tbody tr or [scope*='row']
-    const orderIDGroup = await page.locator("[scope*='row']");
+    // Orders Page - Verify order in orders list: can use tbody tr
+    const orderIDGroup = await page.locator("tbody tr");
     const orderCount = await orderIDGroup.count();
     for (let i = 0; i < orderCount; ++i)
     {   

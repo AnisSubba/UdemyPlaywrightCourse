@@ -15,7 +15,7 @@ test('Playwright Locator test', async ({page}) =>
     await expect(page.getByLabel("Gender")).toHaveValue("Female");
 
     // getbyplaceholder example for text box and password box
-    await page.locator(".ng-touched[name*='name']").fill("TestName");
+    await page.locator(".form-group [name*='name']").fill("TestName");
     await page.getByPlaceholder("Password").fill("TestName");
     // await expect(page.getByLabel("Password")).toHaveValue("TestName");
 

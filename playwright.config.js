@@ -19,6 +19,9 @@ export default defineConfig({
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: false
-}
+    viewport: { width: 1280, height: 900 },
+    headless: false,
+    screenshot: 'on',
+    trace: 'retain-on-failure'//off, on, retain-on-failure
+  }
 });

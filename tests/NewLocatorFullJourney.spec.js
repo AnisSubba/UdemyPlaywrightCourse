@@ -1,17 +1,19 @@
 import {expect, test} from "@playwright/test";
 
+// Full journey test simulating user actions on rahulshettyacademy.com with new locator methods such as getByRole, getByPlaceholder, and getByText.
+
 test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
 {
     const context = await browser.newContext(); 
     const page = await context.newPage();
 
     // Prepare test data
-    const userName = page.locator("#userEmail");
-    const password = page.locator("#userPassword");
-    const signInButton = page.locator("[value='Login']");
+    const userName = page.getByPlaceholder("email@example.com");
+    const password = page.getByPlaceholder("enter your passsword");
+    const signInButton = page.getByRole("button", {name: "Login"});
     const products = page.locator(".card-body");
     const productsTitle = 'ZARA COAT 3';
-    const cartButton = page.locator("[routerlink*='cart']");
+    const cartButton = page.getByRole("button", {name: "Cart"});
     const email = "test2014@gmail.com";
     const TextBoxes = page.locator(".input.txt");
     const dateBox = page.locator(".ddl");
@@ -33,26 +35,15 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
     const titles = await products.locator("b").allTextContents();
     console.log(titles);
     
-    const count = await products.count();
-    console.log("Total products = " + count);
+    await page.locator(".card-body").filter({ hasText: 'ZARA COAT 3' }).getByRole('button', {name: 'Add To Cart'}).click();
 
-    for (let i = 0; i < count; ++i)
-    {
-        if(await products.nth(i).locator("b").textContent() === productsTitle)
-        {
-            await products.nth(i).locator("text= Add To Cart").click();
-            break;
-        }
-    }
-
-    await cartButton.click();
+    await page.getByRole("listitem").getByRole("button", {name: "Cart"}).click();
     await page.locator("div li").first().waitFor();
 
     // Cart Page
-    const bool = await page.locator("h3:has-text('" + productsTitle + "')").isVisible();
-    expect(bool).toBeTruthy();
+    await expect(page.getByText(productsTitle)).toBeVisible();
 
-    await page.locator("button:has-text('Checkout')").click();
+    await page.getByRole("button", {name: "Checkout"}).click();
 
     /* Autocomplete address - country selection
     - PressSequentially will type the text with a small delay between each keystroke to simulate natural typing.
@@ -60,20 +51,8 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
     - Then, it counts the number of button elements within the dropdown and iterates through them to find the one that matches " India".
     - Once found, it clicks on that button to select the country.
      */
-    await page.locator("[placeholder*='Country']").pressSequentially("ind");
-    const dropdown = await page.locator(".ta-results");
-    await dropdown.waitFor();
-    const optionsCount = await dropdown.locator("button").count();
-    console.log("Country option = " + optionsCount);
-    for (let i = 0; i < optionsCount; ++i)
-    {   
-        const text = await dropdown.locator("button").nth(i).textContent();
-        if (text === " India")
-        {
-            await dropdown.locator("button").nth(i).click();
-            break;
-        }
-    }
+    await page.getByPlaceholder("Select Country").pressSequentially("ind");
+    await page.getByRole("button", {name: "India"}).nth(1).click();
 
     expect(await page.locator(".user__name label").textContent()).toContain(email);
 
@@ -87,7 +66,8 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
     await dateBox.nth(1).selectOption("30");
 
     // Place the order
-    await page.locator(".action__submit").click();
+    await page.getByText("PLACE ORDER").click();
+    await expect(page.getByText("Thankyou for the order.")).toBeVisible();
 
     // Order Confirmation Page
     const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
@@ -101,8 +81,8 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
     // wait for orders page to load
     await page.locator("tbody").waitFor();
 
-    // Orders Page - Verify order in orders list: can use tbody tr or [scope*='row']
-    const orderIDGroup = await page.locator("[scope*='row']");
+    // Orders Page - Verify order in orders list: can use tbody 
+    const orderIDGroup = page.locator("tbody tr");
     const orderCount = await orderIDGroup.count();
     for (let i = 0; i < orderCount; ++i)
     {   

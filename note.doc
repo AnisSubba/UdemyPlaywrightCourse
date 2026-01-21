@@ -19,7 +19,10 @@
 
  playwright report - npm run report
  playwright run test - npm playwright test test/(class Full name) --ui
+ playwright run debug - npm playwright test PlaywrightLocatore.spec.js --debug
+ playwright codegen tool - npm playwright codegen {url} will record the user journey and generate automation playwright script
+
  playwright has search function which isn't just basice css selectore but other function which is very helpful. Such as "text="Add to Cart" or "h3:has-text('Zara Coat 3')"
 
- Had some issue with running --ui so got this code which opens ui to the local webpage instead a external popup : npx playwright test --ui --ui-host=127.0.0.1 --ui-port=0
+ Had some issue with running --ui so got this code which opens ui to the local webpage instead a external popup could be because of vpn on: npx playwright test --ui --ui-host=127.0.0.1 --ui-port=0
 
