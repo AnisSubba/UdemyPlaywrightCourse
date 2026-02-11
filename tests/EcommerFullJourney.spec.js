@@ -121,5 +121,5 @@ test.only('rahulshettyacademy automation: Smoke Test', async ({browser}) =>
 
 
 
-    await page.pause();
+    // await page.pause();
 });
