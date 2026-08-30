@@ -17,10 +17,10 @@
  Write css with traversing for parent to child = css -> parenttagname >> childtagname
  If needs to write the locator based on text = text=''
 
- playwright report - npm run report
- playwright run test - npm playwright test test/(class Full name) --ui
- playwright run debug - npm playwright test PlaywrightLocatore.spec.js --debug
- playwright codegen tool - npm playwright codegen {url} will record the user journey and generate automation playwright script
+ playwright report - npx run report
+ playwright run test - npx playwright test test/(class Full name) --ui
+ playwright run debug - npx playwright test PlaywrightLocatore.spec.js --debug
+ playwright codegen tool - npx playwright codegen {url} will record the user journey and generate automation playwright script
 
  playwright has search function which isn't just basice css selectore but other function which is very helpful. Such as "text="Add to Cart" or "h3:has-text('Zara Coat 3')"
 
